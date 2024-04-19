@@ -1,0 +1,10 @@
+﻿{
+	"Name": "MultiplayerChests",
+	"Author": "jiejasonliu",
+	"Version": "1.0.0",
+	"Description": "Allow multiple players to use the same chest simultaneously.",
+	"UniqueID": "jiejasonliu.MultiplayerChests",
+	"EntryDll": "MultiplayerChests.dll",
+	"MinimumApiVersion": "3.0.0",
+	"UpdateKeys": []
+}
