@@ -31,8 +31,11 @@ namespace MultiplayerChests
             if (!e.Button.IsActionButton())
                 return;
 
+            // updateCursorTileHint checks y+1 if y didn't yield an actionable tile
             var tilePos = e.Cursor.GrabTile;
-            var objectAtTile = Game1.currentLocation.getObjectAtTile((int)tilePos.X, (int)tilePos.Y);
+            var objectAtTile =
+                Game1.currentLocation.getObjectAtTile((int)tilePos.X, (int)tilePos.Y) ?? 
+                Game1.currentLocation.getObjectAtTile((int)tilePos.X, (int)(tilePos.Y + 1));
 
             if (objectAtTile is Chest chest && IsPlayerChest(chest))
             {
@@ -49,7 +52,7 @@ namespace MultiplayerChests
             {
                 if (___currentLidFrame < __instance.startingLidFrame.Value || ___currentLidFrame > __instance.getLastLidFrame())
                 {
-                    ___currentLidFrame = __instance.startingLidFrame.Value;
+                    ___currentLidFrame = Math.Clamp(___currentLidFrame, __instance.startingLidFrame.Value, __instance.getLastLidFrame());
                 }
                 // Prevent `fixLidFrame` from being invoked
                 return false;
